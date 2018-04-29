@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Users</title>
+</head>
+<body>
+    <table>
+        <tr>
+            <th>username</th>
+            <th>role</th>
+        </tr>
+        <tr th:each="user: ${users}">
+            <td th:text="${user.username}"></td>
+            <td th:text="${user.role}"></td>
+        </tr>
+    </table>
+
+    <form th:action="@{/users/create}" th:object="${newUser}" method="post">
+        Name: <input type="text" name="username" th:field="${newUser.username}"/>
+        Password: <input type="password" name="password" th:field="${newUser.password}"/>
+        <button>Create</button>
+    </form>
+
+    <div th:if="${param.success}">
+        User created successfully!
+    </div>
+</body>
+</html>

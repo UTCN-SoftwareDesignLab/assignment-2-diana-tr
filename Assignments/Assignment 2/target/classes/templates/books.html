@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Books</title>
+</head>
+<body>
+<table>
+    <tr>
+        <th>id</th>
+        <th>title</th>
+        <th>author</th>
+        <th>genre</th>
+        <th>quantity</th>
+        <th>price</th>
+    </tr>
+    <tr th:each = "book: ${books}">
+        <td th:text="${book.id}"></td>
+        <td th:text="${book.title}"></td>
+        <td th:text="${book.author}"></td>
+        <td th:text="${book.genre}"></td>
+        <td th:text="${book.quantity}"></td>
+        <td th:text="${book.price}"></td>
+       <!-- <td><a th:href="@{/books/delete/${book.id}}" class="btn btn-danger">Delete</a></td>-->
+
+    </tr>
+</table>
+
+<a th:href="@{/books/create}">Create a new book</a>
+
+<form th:action="@{/books/delete}" method="get">
+    <input type="text" name="id" th:value="*{id}">
+    <button type="submit">Delete</button>
+    <div th:if="${param.success}">
+        Book successfully deleted!
+    </div>
+</form>
+
+
+
+</body>
+</html>
