@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Bookstore Application</title>
+</head>
+<body>
+<h1> Administrator Application</h1>
+<p><a th:href="@{/admin/books}">Manage Books</a></p>
+<p><a th:href="@{/admin/users}">Manage Users</a></p>
+<p><a th:href="@{/admin/generateCsv}">Generate Csv file with out of stock books</a></p>
+<p th:text="${csvMessage}"></p>
+<p><a th:href="@{/admin/generatePdf}">Generate Pdf file with out of stock books</a> </p>
+<p th:text="${pdfMessage}"></p>
+
+</body>
+</html>

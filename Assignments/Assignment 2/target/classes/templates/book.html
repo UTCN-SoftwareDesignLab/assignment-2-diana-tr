@@ -3,12 +3,10 @@
       xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Books</title>
-    <link rel="stylesheet" type="text/css" media="all"
-          href="resources/css/table.css" th:href="@{/css/table.css}"/>
+    <title>Bookstore Application</title>
 </head>
 <body>
-<h2>List of books</h2>
+<h1>List of books</h1>
 <table border="1">
     <tr>
         <th>id</th>
@@ -29,19 +27,7 @@
     </tr>
 </table>
 
-<h2>Enter the id of the book you want to delete:</h2>
-<p><form th:action="@{/books/delete}" method="get">
-    <input type="text" name="id" th:value="*{id}">
-    <button type="submit">Delete</button>
-    <div th:if="${param.success}">
-        Book successfully deleted!
-    </div>
-</form></p>
-
-<p><a th:href="@{/books/create}">Create a new book</a></p>
-<p><a th:href="@{/books/update}">Edit an existing book</a></p>
-<p><a th:href="@{/admin}">Back</a></p>
-
+<p><a th:href="@{/employee}">Back</a></p>
 
 </body>
 </html>

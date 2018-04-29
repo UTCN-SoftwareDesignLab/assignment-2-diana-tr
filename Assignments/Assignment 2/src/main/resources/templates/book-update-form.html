@@ -6,8 +6,10 @@
     <title>Bookstore Application</title>
 </head>
 <body>
-<h1>Add a new book</h1>
-<form th:action="@{/books/create}" th:object="${book}" method="post">
+
+<h1>Edit an existing book</h1>
+<form th:action="@{/books/update}" th:object="${book}" method="post">
+    <p>Id: <input type="number" th:field="${book.id}"/></p>
     <p>Title: <input type="text" th:field="${book.title}"/></p>
     <p>Author: <input type="text" th:field="${book.author}"></p>
     <p>Genre: <input type="text" th:field="${book.genre}"/></p>
@@ -17,7 +19,7 @@
 </form>
 
 <div th:if="${param.success}">
-    Book created successfully!
+    Book successfully updated!
 </div>
 
 <a th:href="@{/books}">List of books</a>

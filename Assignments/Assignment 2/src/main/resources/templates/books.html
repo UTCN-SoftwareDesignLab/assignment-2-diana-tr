@@ -4,9 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <title>Books</title>
+    <link rel="stylesheet" type="text/css" media="all"
+          href="resources/css/table.css" th:href="@{/css/table.css}"/>
 </head>
 <body>
-<table>
+<h2>List of books</h2>
+<table border="1">
     <tr>
         <th>id</th>
         <th>title</th>
@@ -15,28 +18,29 @@
         <th>quantity</th>
         <th>price</th>
     </tr>
-    <tr th:each = "book: ${books}">
+    <tr th:each="book: ${books}">
         <td th:text="${book.id}"></td>
         <td th:text="${book.title}"></td>
         <td th:text="${book.author}"></td>
         <td th:text="${book.genre}"></td>
         <td th:text="${book.quantity}"></td>
         <td th:text="${book.price}"></td>
-       <!-- <td><a th:href="@{/books/delete/${book.id}}" class="btn btn-danger">Delete</a></td>-->
 
     </tr>
 </table>
 
-<a th:href="@{/books/create}">Create a new book</a>
-
-<form th:action="@{/books/delete}" method="get">
+<h2>Enter the id of the book you want to delete:</h2>
+<p><form th:action="@{/books/delete}" method="get">
     <input type="text" name="id" th:value="*{id}">
     <button type="submit">Delete</button>
     <div th:if="${param.success}">
         Book successfully deleted!
     </div>
-</form>
+</form></p>
 
+<p><a th:href="@{/books/create}">Create a new book</a></p>
+<p><a th:href="@{/books/update}">Edit an existing book</a></p>
+<p><a th:href="@{/admin}">Back</a></p>
 
 
 </body>
