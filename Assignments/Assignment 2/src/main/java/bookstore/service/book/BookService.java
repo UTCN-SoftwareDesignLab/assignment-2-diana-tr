@@ -1,4 +1,4 @@
-package bookstore.service;
+package bookstore.service.book;
 
 import bookstore.dto.BookDto;
 import bookstore.entity.Book;
@@ -11,8 +11,6 @@ public interface BookService {
     void delete(Long id);
     void update(Book book);
     Book findById(Long id);
-    List<Book> findAllByTitle(String title);
-    List<Book> findAllByAuthor(String author);
-    List<Book> findAllByGenre(String genre);
+    List<Book> findAllByField(String searchField);
     boolean sellBook(String title,Long quantity);
 }

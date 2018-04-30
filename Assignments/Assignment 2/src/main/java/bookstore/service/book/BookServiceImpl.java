@@ -1,5 +1,6 @@
-package bookstore.service;
+package bookstore.service.book;
 
+import bookstore.converter.BookDtoToBookConverter;
 import bookstore.dto.BookDto;
 import bookstore.entity.Book;
 import bookstore.repository.BookRepository;
@@ -13,6 +14,9 @@ public class BookServiceImpl implements BookService {
     private BookRepository bookRepository;
 
     @Autowired
+    private BookDtoToBookConverter converter;
+
+    @Autowired
     public BookServiceImpl(BookRepository bookRepository) {
         this.bookRepository = bookRepository;
     }
@@ -24,8 +28,7 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public Book create(BookDto bookDto) {
-        Book book = new Book(bookDto.getTitle(), bookDto.getAuthor(), bookDto.getGenre(), bookDto.getQuantity(), bookDto.getPrice());
-        return bookRepository.save(book);
+        return bookRepository.save(converter.apply(bookDto));
     }
 
     @Override
@@ -35,14 +38,14 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public void update(Book book) {
-       Book newBook=bookRepository.getOne(book.getId());
-       newBook.setTitle(book.getTitle());
-       newBook.setAuthor(book.getAuthor());
-       newBook.setGenre(book.getGenre());
-       newBook.setQuantity(book.getQuantity());
-       newBook.setPrice(book.getPrice());
+        Book newBook = bookRepository.getOne(book.getId());
+        newBook.setTitle(book.getTitle());
+        newBook.setAuthor(book.getAuthor());
+        newBook.setGenre(book.getGenre());
+        newBook.setQuantity(book.getQuantity());
+        newBook.setPrice(book.getPrice());
 
-       bookRepository.save(newBook);
+        bookRepository.save(newBook);
     }
 
     @Override
@@ -50,29 +53,20 @@ public class BookServiceImpl implements BookService {
         return bookRepository.getOne(id);
     }
 
-    @Override
-    public List<Book> findAllByTitle(String title) {
-        return bookRepository.findAllByTitle(title);
-    }
 
     @Override
-    public List<Book> findAllByAuthor(String author) {
-        return bookRepository.findAllByAuthor(author);
-    }
-
-    @Override
-    public List<Book> findAllByGenre(String genre) {
-        return bookRepository.findAllByGenre(genre);
+    public List<Book> findAllByField(String searchField) {
+        return bookRepository.findAllByField(searchField);
     }
 
     @Override
     public boolean sellBook(String title, Long quantity) {
-        Book book=bookRepository.findByTitle(title);
-        if(book.getQuantity()!=0){
-            book.setQuantity(book.getQuantity()-1);
+        Book book = bookRepository.findByTitle(title);
+        if (book.getQuantity() != 0) {
+            book.setQuantity(book.getQuantity() - 1);
             bookRepository.save(book);
             return true;
-        }else{
+        } else {
             return false;
         }
     }

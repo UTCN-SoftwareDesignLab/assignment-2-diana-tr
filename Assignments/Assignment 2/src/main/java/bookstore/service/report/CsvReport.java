@@ -15,8 +15,7 @@ public class CsvReport implements ReportGenerator{
     private static final String FILE_HEADER = "Id, Title, Author, Genre, Price";
 
 
-    public CsvReport(List<Book> books) {
-        generateReport(books);
+    public CsvReport() {
     }
 
     @Override

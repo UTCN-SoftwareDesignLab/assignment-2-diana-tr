@@ -7,11 +7,9 @@ import org.springframework.data.jpa.repository.Query;
 import java.util.List;
 
 public interface BookRepository extends JpaRepository<Book, Long> {
-    List<Book> findAllByTitle(String title);
 
-    List<Book> findAllByAuthor(String author);
-
-    List<Book> findAllByGenre(String genre);
+    @Query(value="SELECT * FROM book b WHERE b.title LIKE ?1 OR b.author LIKE ?1 OR b.genre LIKE ?1",nativeQuery = true)
+    List<Book> findAllByField(String searchField);
 
     Book findByTitle(String title);
 }

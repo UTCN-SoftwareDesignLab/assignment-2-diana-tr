@@ -8,27 +8,18 @@
 <body>
 <h1>Employee Application</h1>
 
-<form th:action="@{/employee/searchByTitle}" method="get">
-    <p>Search by title: <input type="text" name="title" th:value="*{title}"/>
-        <button type="submit">Search</button> </p>
+<form th:action="@{/employee/searchByField}" method="get">
+    <p>Search by title/author/genre: <input type="text" name="searchField" th:value="*{searchField}"/>
+        <button type="submit">Search</button>
+    </p>
 </form>
-
-<form th:action="@{/employee/searchByAuthor}" method="get">
-    <p>Search by author: <input type="text" name="author" th:value="*{author}"/>
-        <button type="submit">Search</button> </p>
-</form>
-
-<form th:action="@{/employee/searchByGenre}" method="get">
-    <p>Search by genre: <input type="text" name="genre" th:value="*{genre}"/>
-        <button type="submit">Search</button> </p>
-</form>
-
 
 
 <form th:action="@{/employee/sellBook}" method="post">
     <p>Sell a book: <input type="text" name="title" th:value="*{title}"/>
         <input type="text" name="quantity" th:value="*{quantity}"/>
-        <button type="submit">Search</button> </p>
+        <button type="submit">Search</button>
+    </p>
     <p th:text="${message}"></p>
 </form>
 

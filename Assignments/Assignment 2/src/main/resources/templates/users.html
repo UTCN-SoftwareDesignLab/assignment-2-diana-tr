@@ -2,28 +2,34 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>Users</title>
+    <title>Bookstore Application</title>
 </head>
 <body>
-    <table>
-        <tr>
-            <th>username</th>
-            <th>role</th>
-        </tr>
-        <tr th:each="user: ${users}">
-            <td th:text="${user.username}"></td>
-            <td th:text="${user.role}"></td>
-        </tr>
-    </table>
+<h1>Administrator Application</h1>
+<h3>List of users</h3>
+<table border="1">
+    <tr>
+        <th>Username</th>
+        <th>Role</th>
+    </tr>
+    <tr th:each="user: ${users}">
+        <td th:text="${user.username}"></td>
+        <td th:text="${user.role}"></td>
+    </tr>
+</table>
 
-    <form th:action="@{/users/create}" th:object="${newUser}" method="post">
-        Name: <input type="text" name="username" th:field="${newUser.username}"/>
-        Password: <input type="password" name="password" th:field="${newUser.password}"/>
-        <button>Create</button>
-    </form>
-
+<h3>Enter the username of the user you want to delete:</h3>
+<p><form th:action="@{/users/delete}" method="get">
+    <input type="text" name="username" th:value="*{username}">
+    <button type="submit">Delete</button>
     <div th:if="${param.success}">
-        User created successfully!
+        User successfully deleted!
     </div>
+</form></p>
+
+<p><a th:href="@{/users/create}">Create a new user</a></p>
+<p><a th:href="@{/users/update}">Edit an existing user</a></p>
+<p><a th:href="@{/admin}">Back</a></p>
+
 </body>
 </html>

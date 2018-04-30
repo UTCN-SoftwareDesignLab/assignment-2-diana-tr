@@ -1,6 +1,6 @@
 package bookstore;
 
-import bookstore.service.BookService;
+import bookstore.service.book.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,37 +20,26 @@ public class EmployeeController {
     }
 
     @RequestMapping("/book")
-    public String book(){
+    public String book() {
         return "book";
     }
 
-    @RequestMapping(value = "/searchByTitle", method = RequestMethod.GET)
-    public String searchByTitle(Model model, @RequestParam(name = "title") String title) {
-        model.addAttribute("books", bookService.findAllByTitle(title));
+
+    @RequestMapping(value = "/searchByField", method = RequestMethod.GET)
+    public String searchByField(Model model, @RequestParam(name = "searchField") String searchField) {
+        model.addAttribute("books", bookService.findAllByField(searchField));
         return "book";
     }
 
-    @RequestMapping(value = "/searchByAuthor", method = RequestMethod.GET)
-    public String searchByAuthor(Model model, @RequestParam(name = "author") String author) {
-        model.addAttribute("books", bookService.findAllByAuthor(author));
-        return "book";
-    }
-
-    @RequestMapping(value = "/searchByGenre", method = RequestMethod.GET)
-    public String searchByGenre(Model model, @RequestParam(name = "genre") String genre) {
-        model.addAttribute("books", bookService.findAllByGenre(genre));
-        return "book";
-    }
-
-    @RequestMapping(value="/sellBook",method = RequestMethod.POST)
-    public String sellBook(@RequestParam(name="title") String title,
-                           @RequestParam(name="quantity") String quantity,
-                           Model model){
-        boolean result=bookService.sellBook(title,Long.parseLong(quantity));
-        if(result==true){
-            model.addAttribute("message","Book sold");
-        }else{
-            model.addAttribute("message","Can't sell book");
+    @RequestMapping(value = "/sellBook", method = RequestMethod.POST)
+    public String sellBook(@RequestParam(name = "title") String title,
+                           @RequestParam(name = "quantity") String quantity,
+                           Model model) {
+        boolean result = bookService.sellBook(title, Long.parseLong(quantity));
+        if (result == true) {
+            model.addAttribute("message", "Book sold");
+        } else {
+            model.addAttribute("message", "Can't sell book");
         }
         return "employee";
     }

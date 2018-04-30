@@ -14,9 +14,10 @@ import java.util.List;
 public class PdfReport implements ReportGenerator {
     static final String FILE_LOCATION = "src/main/resources/reports/reportPdf.pdf";
 
-    public PdfReport(List<Book> books){
-        generateReport(books);
+    public PdfReport() {
+
     }
+
     @Override
     public void generateReport(List<Book> books) {
         List<Book> result = new ArrayList<>();
@@ -27,35 +28,35 @@ public class PdfReport implements ReportGenerator {
         }
 
         try {
-            Document document=new Document();
-            PdfWriter.getInstance(document,new FileOutputStream(FILE_LOCATION));
+            Document document = new Document();
+            PdfWriter.getInstance(document, new FileOutputStream(FILE_LOCATION));
             document.open();
-            Paragraph paragraph=new Paragraph();
+            Paragraph paragraph = new Paragraph();
             paragraph.add("Table with out of stock books");
             document.add(paragraph);
-            PdfPTable table=new PdfPTable(5);
+            PdfPTable table = new PdfPTable(5);
 
-            PdfPCell cell1=new PdfPCell(new Phrase("Id"));
+            PdfPCell cell1 = new PdfPCell(new Phrase("Id"));
             cell1.setHorizontalAlignment(Element.ALIGN_CENTER);
             table.addCell(cell1);
 
-            PdfPCell cell2=new PdfPCell(new Phrase("Title"));
+            PdfPCell cell2 = new PdfPCell(new Phrase("Title"));
             cell1.setHorizontalAlignment(Element.ALIGN_CENTER);
             table.addCell(cell2);
 
-            PdfPCell cell3=new PdfPCell(new Phrase("Author"));
+            PdfPCell cell3 = new PdfPCell(new Phrase("Author"));
             cell1.setHorizontalAlignment(Element.ALIGN_CENTER);
             table.addCell(cell3);
 
-            PdfPCell cell4=new PdfPCell(new Phrase("Genre"));
+            PdfPCell cell4 = new PdfPCell(new Phrase("Genre"));
             cell1.setHorizontalAlignment(Element.ALIGN_CENTER);
             table.addCell(cell4);
 
-            PdfPCell cell5=new PdfPCell(new Phrase("Price"));
+            PdfPCell cell5 = new PdfPCell(new Phrase("Price"));
             cell1.setHorizontalAlignment(Element.ALIGN_CENTER);
             table.addCell(cell5);
             table.setHeaderRows(1);
-            for(Book book:result){
+            for (Book book : result) {
                 table.addCell(String.valueOf(book.getId()));
                 table.addCell(book.getTitle());
                 table.addCell(book.getAuthor());

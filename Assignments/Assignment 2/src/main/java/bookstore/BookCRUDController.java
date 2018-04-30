@@ -2,7 +2,7 @@ package bookstore;
 
 import bookstore.dto.BookDto;
 import bookstore.entity.Book;
-import bookstore.service.BookService;
+import bookstore.service.book.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

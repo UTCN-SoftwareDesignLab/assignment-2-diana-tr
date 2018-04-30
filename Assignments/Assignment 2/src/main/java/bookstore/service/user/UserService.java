@@ -1,4 +1,4 @@
-package bookstore.service;
+package bookstore.service.user;
 
 import bookstore.dto.UserDto;
 import bookstore.entity.User;
@@ -9,7 +9,7 @@ public interface UserService {
     List<User> getAll();
     User create(UserDto userDto);
     void delete(UserDto userDto);
-    void update(UserDto userDto);
+    void update(User user);
     User findByUsername(String username);
     User findByUsernameAndPassword(String username,String password);
     void deleteByUsername(String username);

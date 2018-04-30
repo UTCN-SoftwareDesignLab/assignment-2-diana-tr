@@ -2,9 +2,10 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>Create new user</title>
+    <title>Bookstore Application</title>
 </head>
 <body>
+<h1>Add a new user</h1>
 <form th:action="@{/users/create}" th:object="${user}" method="post">
     Username: <input type="text" name="username" th:field="${user.username}"/>
     Password: <input type="password" name="password" th:field="${user.password}"/>
@@ -14,5 +15,6 @@
 <div th:if="${param.success}">
     User created successfully!
 </div>
+<a th:href="@{/users}">List of users</a>
 </body>
 </html>

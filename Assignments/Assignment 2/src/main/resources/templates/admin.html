@@ -9,10 +9,8 @@
 <h1> Administrator Application</h1>
 <p><a th:href="@{/admin/books}">Manage Books</a></p>
 <p><a th:href="@{/admin/users}">Manage Users</a></p>
-<p><a th:href="@{/admin/generateCsv}">Generate Csv file with out of stock books</a></p>
-<p th:text="${csvMessage}"></p>
-<p><a th:href="@{/admin/generatePdf}">Generate Pdf file with out of stock books</a> </p>
-<p th:text="${pdfMessage}"></p>
+<p><a th:href="@{/admin/downloadCsv}">Generate Csv file with out of stock books</a></p>
+<p><a th:href="@{/admin/downloadPdf}">Generate Pdf file with out of stock books</a></p>
 
 </body>
 </html>
