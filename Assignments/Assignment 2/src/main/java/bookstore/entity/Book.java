@@ -5,8 +5,8 @@ import javax.persistence.*;
 @Entity
 public class Book {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name="id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Long id;
 
     private String title;
@@ -15,7 +15,8 @@ public class Book {
     private Long quantity;
     private Long price;
 
-    public Book(){}
+    public Book() {
+    }
 
     public Book(String title, String author, String genre, Long quantity, Long price) {
         this.title = title;

@@ -1,11 +1,12 @@
 package bookstore.dto;
 
-import bookstore.entity.Role;
-
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 public class UserDto {
+
+    private Long id;
+
     @NotNull(message = "Please enter the username")
     @Size(min = 3, max = 45, message = "Username must be at least 3 characters")
     private String username;
@@ -16,7 +17,17 @@ public class UserDto {
 
     private boolean enabled;
 
-    private Role role;
+    //private Set<Role> roles;
+
+    private String role;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getUsername() {
         return username;
@@ -42,11 +53,11 @@ public class UserDto {
         this.enabled = enabled;
     }
 
-    public Role getRole() {
+    public String getRole() {
         return role;
     }
 
-    public void setRole(Role role) {
+    public void setRole(String role) {
         this.role = role;
     }
 }

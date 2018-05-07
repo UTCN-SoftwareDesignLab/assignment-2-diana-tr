@@ -5,22 +5,44 @@ import javax.persistence.*;
 @Entity
 public class User {
     @Id
-    @Column(name="username")
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "user_id")
+    private Long id;
     private String username;
     private String password;
     private boolean enabled;
-    @OneToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL,mappedBy = "user")
-    private Role role;
 
-    public User(){
+    /*@ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private Set<Role> roles;*/
 
-    }
+    private String role;
 
-    public User(String username, String password, boolean enabled, Role role) {
+    public User(String username, String password, boolean enabled, String role) {
         this.username = username;
         this.password = password;
         this.enabled = enabled;
         this.role = role;
+    }
+
+    public User() {
+
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getUsername() {
@@ -47,11 +69,5 @@ public class User {
         this.enabled = enabled;
     }
 
-    public Role getRole() {
-        return role;
-    }
 
-    public void setRole(Role role) {
-        this.role = role;
-    }
 }

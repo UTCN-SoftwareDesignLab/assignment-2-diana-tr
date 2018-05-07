@@ -9,6 +9,7 @@ public class BookDtoToBookConverter implements SuperConverter<BookDto, Book> {
     @Override
     public Book apply(final BookDto input) {
         final Book book = new Book();
+        book.setId(input.getId());
         book.setTitle(input.getTitle());
         book.setAuthor(input.getAuthor());
         book.setGenre(input.getGenre());

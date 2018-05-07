@@ -8,14 +8,16 @@
 <body>
 
 <h1>Edit an existing book</h1>
-<form th:action="@{/books/update}" th:object="${book}" method="post">
-    <p>Id: <input type="number" th:field="${book.id}"/></p>
-    <p>Title: <input type="text" th:field="${book.title}"/></p>
-    <p>Author: <input type="text" th:field="${book.author}"></p>
-    <p>Genre: <input type="text" th:field="${book.genre}"/></p>
-    <p>Quantity: <input type="number" th:field="${book.quantity}"/></p>
-    <p>Price: <input type="number" th:field="${book.price}"/></p>
-    <p><button>Save</button></p>
+<form th:action="@{/books/update}" th:object="${bookDto}" method="post">
+    <p>Id: <input type="text"  th:readonly="true" th:field="${bookDto.id}"/></p>
+    <p>Title: <input type="text" th:field="${bookDto.title}"/></p>
+    <p>Author: <input type="text" th:field="${bookDto.author}"></p>
+    <p>Genre: <input type="text" th:field="${bookDto.genre}"/></p>
+    <p>Quantity: <input type="text" th:field="${bookDto.quantity}"/></p>
+    <p>Price: <input type="text" th:field="${bookDto.price}"/></p>
+    <p>
+        <button>Save</button>
+    </p>
 </form>
 
 <div th:if="${param.success}">

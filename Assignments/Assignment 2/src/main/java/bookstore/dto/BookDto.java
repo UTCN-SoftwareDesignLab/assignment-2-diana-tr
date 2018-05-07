@@ -1,11 +1,23 @@
 package bookstore.dto;
 
 public class BookDto {
+    private Long id;
     private String title;
     private String author;
     private String genre;
     private Long quantity;
     private Long price;
+
+    public BookDto() {
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getTitle() {
         return title;

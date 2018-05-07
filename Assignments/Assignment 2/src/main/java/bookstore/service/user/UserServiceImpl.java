@@ -2,19 +2,27 @@ package bookstore.service.user;
 
 import bookstore.dto.UserDto;
 import bookstore.entity.User;
+import bookstore.repository.RoleRepository;
 import bookstore.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.security.MessageDigest;
 import java.util.List;
 
-@Service
+@Service("userService")
 @Transactional
 public class UserServiceImpl implements UserService {
-
+    @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private RoleRepository roleRepository;
+
+    @Autowired
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Autowired
     public UserServiceImpl(UserRepository userRepository) {
@@ -29,7 +37,8 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User create(UserDto userDto) {
-        User user = new User(userDto.getUsername(), encodePassword(userDto.getPassword()), userDto.isEnabled(), userDto.getRole());
+        String role = "ROLE_USER";
+        User user = new User(userDto.getUsername(), bCryptPasswordEncoder.encode(userDto.getPassword()), true, role);
         return userRepository.save(user);
     }
 

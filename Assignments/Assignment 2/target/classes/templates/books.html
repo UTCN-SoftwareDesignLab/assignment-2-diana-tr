@@ -25,21 +25,23 @@
         <td th:text="${book.genre}"></td>
         <td th:text="${book.quantity}"></td>
         <td th:text="${book.price}"></td>
-
+        <td><a th:href="@{/books/edit/(id=${book.id})}">Edit</a></td>
     </tr>
 </table>
 
 <h2>Enter the id of the book you want to delete:</h2>
-<p><form th:action="@{/books/delete}" method="get">
+<p>
+<form th:action="@{/books/delete}" method="get">
     <input type="text" name="id" th:value="*{id}">
     <button type="submit">Delete</button>
     <div th:if="${param.success}">
         Book successfully deleted!
     </div>
-</form></p>
+</form>
+</p>
 
 <p><a th:href="@{/books/create}">Create a new book</a></p>
-<p><a th:href="@{/books/update}">Edit an existing book</a></p>
+
 <p><a th:href="@{/admin}">Back</a></p>
 
 
